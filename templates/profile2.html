@@ -1,0 +1,25 @@
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/bootstrap.js">
+    <link rel="stylesheet" href="/static/profile1.css">
+  </head>
+  <body>
+    <div class="container" >
+    <h2 class="profn">{{us.first_name}} Profile</h2>
+    <span class="pro">Username: </span><span class="info">{{us.username}}</span><br>
+    <span class="pro">Fullname: </span><span class="info">{{us.first_name}} {{us.last_name}}</span><br>
+    <span class="pro">Email: </span><span class="info">{{us.email}}</span><br>
+<span class="pro">Articles Written:</span>
+    {% for z in x %}
+
+   <a href="{% url 'article:viewart' id=z.id %}" ><span class="info">{{z.title}}</span></a>,
+     {% endfor %}
+</div>
+  </body>
+</html>

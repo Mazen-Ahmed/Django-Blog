@@ -1,0 +1,27 @@
+.form{
+  margin-top: 100px;
+  border: 2px solid #95a5a6;
+  border-radius: 5px;
+    width: 400px;
+    overflow: hidden;
+    height: auto;
+
+}
+label{
+  float: left;
+
+}
+.head{
+  background-color: #8395a7;
+  color: white;
+  margin-bottom: 20px;
+  font-family:serif;
+  height: 50px;
+  margin-top: 0;
+}
+.fields{
+  padding: 10px;
+}
+#btn{
+  margin: 5px;
+}

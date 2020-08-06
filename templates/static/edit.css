@@ -1,0 +1,12 @@
+.for{
+  margin-top: 20px;
+  border: 2px solid #95a5a6;
+  border-radius: 5px;
+    padding: 20px;
+    width: 500px;
+    overflow: hidden;
+}
+label{
+  float: left;
+
+}

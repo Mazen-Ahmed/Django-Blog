@@ -1,0 +1,136 @@
+
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>All Articles</title>
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/bootstrap.js">
+    <link rel="stylesheet" href="/static/articles.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Raleway|Ubuntu" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </head>
+  <body >
+
+
+      {% if user.is_authenticated %}
+      <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav" >
+    <a class="navbar-brand" href="/articles/">Django Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/articles/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'article:addar'%}">Add</a>
+        </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="/user/profile/">Profile</a>
+</li>
+
+  </ul>
+  <ul class=" navbar-nav navbar-right">
+        <li  style="float:'right'">  <a class="nav-link" href="#">Welcome:{{user.username}}</a></li>
+      <li   style="float:'right'">  <a class="nav-link" href="{% url 'system:logout'%}">Log Out</a></li>
+  </ul>
+</div>
+</nav>
+    {% else %}<nav class="navbar navbar-expand-lg navbar-light bg-light" id='nav'>
+  <a class="navbar-brand" href="/articles/">Django Blog</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/articles/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'article:addar'%}">Add</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="/user/register/">register</a>
+</li>
+
+        <li class="nav-item"><a class="nav-link" href="/user/login">Log In</a></li>
+      </ul>
+
+    </div>
+  </nav>
+      {%endif%}
+
+
+
+
+
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">All Articles</h1>
+          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        </div>
+      </div>
+<div class="container ">
+  <form method="GET" action=""  >
+    <input type="text" name="Q" placeholder="Search.." value="{{request.GET.Q}}" type="submit" class='col-lg-12 col-xs-12 col-sm-12'>
+  </form>
+  {%for a in x %}
+  
+  <div class="card">
+    <h5 class="card-header">{{a.title}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">{{a.snippet | safe}}</h5>
+      <p class="card-text"><span><b>Author:</b><a class="user"  href='{%url "system:profile2" id=a.User.id %}'>{{a.User}}</a></span><br>
+      <span><b>Published at:</b>{{a.date}}</span></p>
+      <a href="{{a.id}}" ><button class="btn btn-primary"> see more</button></a>
+    </div>
+  </div><br>
+
+    {%endfor%}
+
+    <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {% if x.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page=1" aria-label="Previous">
+        <span aria-hidden="true">&laquo;&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{ x.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    {% endif %}
+    <span class="current">
+      {{x.count}}
+    </span>
+
+    {% if x.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{x.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a></li>
+      <li>
+      <a class="page-link" href="?page={{ x.paginator.num_pages }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+
+      {% endif %}
+  </ul>
+</nav></div>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/bootstrap.js">
+    <link rel="stylesheet" href="/static/login.css">
+
+
+  <body>
+    <Center>
+    <form class="form" action="?" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="head">
+      <h3>Login Form</h3>
+      </div>
+      <div class="fields">
+        {% bootstrap_form form %}
+      </div>
+      {%if request.GET.next%}
+      <input type="hidden" name="next" value="{{request.GET.next}}">
+      {%endif%}
+      <button type="submit" name="button" id="btn" class="btn btn-outline-primary">Login</button>
+<br>
+    </form>
+  </Center>
+
+  <script src="/static/bootstrap.js">
+  </script>
+  </body>
+</html>

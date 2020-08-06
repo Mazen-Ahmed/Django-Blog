@@ -1,0 +1,29 @@
+.form{
+
+  border: 2px solid #95a5a6;
+  border-radius: 2px;
+    width: 400px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.field{
+  padding: 10px;
+}
+.head{
+  background-color: #8395a7;
+  color: white;
+  margin-bottom: 20px;
+  font-family:serif;
+  height: 50px;
+  margin-top: 0;
+  padding: 0;
+  width: 100;
+}
+label{
+  float: left;
+
+}
+button{
+  margin-bottom: 5px;
+}

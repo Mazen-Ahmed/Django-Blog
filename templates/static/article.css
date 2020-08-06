@@ -1,0 +1,14 @@
+
+.i1{
+  border-radius: 5px;
+  margin-top: 20px;
+  border: 7px solid  #95a5a6;
+}
+.span{
+  float: left;
+}
+.title{
+  margin-top: 5px;
+  border-bottom: 2px solid #95a5a6;
+  width:36%;
+}

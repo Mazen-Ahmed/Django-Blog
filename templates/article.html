@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/bootstrap.js">
+    <link rel="stylesheet" href="/static/article.css">
+    <title></title>
+  </head>
+  <body class="container">
+    {%if x.pic%}
+    <img class="i1" src="{{x.pic.url}}" width="400px" height="300px">
+    {%endif%}
+    <h2 class="title">{{x.title}}</h2><br>
+    <p>{{x.body | safe}}</p><br><br>
+    <p><b>Author:</b>{{x.User}}</p>
+    <p><b>Published at:</b>{{x.date}}</p>
+
+    {% if user.is_authenticated %}
+    {% if x.User.id == user.id %}
+    <a href="{% url 'article:edit' id=x.id%}">  <button  class="btn btn-primary" value="submit"> edit</button></a>
+    <a href="{% url 'article:del' id=x.id%}">  <button  class="btn btn-primary" value="submit"> delete</button></a>
+{% endif %}
+{% endif %}
+  </body>
+</html>

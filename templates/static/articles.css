@@ -1,0 +1,18 @@
+.card{
+  margin-top: 15px;
+}
+#nav{
+  background-color:  #e9ecek;
+}
+
+.tit{
+font-family: serif;
+}
+.btn{
+  float: right;
+  margin-left: 3px;
+}
+.f{
+  margin-top: 20px;
+  margin-bottom:0;
+}
